@@ -20,16 +20,13 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import static java.util.Objects.nonNull;
-
-@Service
+//@Service
 public class FakeStoreProductService implements IProductService {
 
     private RestTemplateBuilder restTemplateBuilder;
     private FakeStoreClient fakeStoreClient;
-    @Autowired
+    //@Autowired
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder,FakeStoreClient fakeStoreClient)
     {
         this.restTemplateBuilder=restTemplateBuilder;
@@ -98,19 +95,25 @@ public class FakeStoreProductService implements IProductService {
             return answer;
     }
 
+    @Override
+    public Product addNewProduct(Product product) {
+        return null;
+    }
+
     /*
       postForEntity, we pass the input parameter - productDto, anb the type to be converted into-ProductDto.class.
       we are returning the information back. i,e return product.
      */
 
-    @Override
-    public Product addNewProduct(IClientProductDto productDto)
-    {
-        RestTemplate restTemplate = restTemplateBuilder.build();
-        restTemplate.postForEntity("https://fakestoreapi.com/products",productDto,ProductDto.class);
-        Product product=getProduct((FakeStoreProductDto)productDto);
-        return product;
-    }
+//
+//    @Override
+//    public Product addNewProduct(IClientProductDto productDto)
+//    {
+//        RestTemplate restTemplate = restTemplateBuilder.build();
+//        restTemplate.postForEntity("https://fakestoreapi.com/products",productDto,ProductDto.class);
+//        Product product=getProduct((FakeStoreProductDto)productDto);
+//        return product;
+//    }
 
     @Override
     public Product updateProduct(Long productId,Product product)

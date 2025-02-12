@@ -1,6 +1,7 @@
 package com.example.productservice_proxy.controller;
 
 import com.example.productservice_proxy.clients.IClientProductDto;
+import com.example.productservice_proxy.clients.fakestore.dto.FakeStoreProductDto;
 import com.example.productservice_proxy.dtos.ProductDto;
 import com.example.productservice_proxy.models.Categories;
 import com.example.productservice_proxy.models.Product;
@@ -35,7 +36,7 @@ public class ProductController  {
             headers.add("Auth-token","heyAccess");
             Product product=this.productService.getSingleProduct(productId);
             if(productId<1)
-            { throw new IllegalAccessException("Something went wrong");}
+             { throw new IllegalAccessException("Something went wrong");}
             ResponseEntity<Product> responseEntity = new ResponseEntity<>(product,headers,HttpStatus.valueOf(200));
             return responseEntity;
         }
@@ -53,9 +54,10 @@ public class ProductController  {
             //return responseEntity;
         }
         @PostMapping("")
-    public ResponseEntity<Product> addNewProduct(@RequestBody IClientProductDto productDto )
-    {       Product product=this.productService.addNewProduct(productDto);
-            ResponseEntity<Product> responseEntity = new ResponseEntity<>(product,HttpStatus.OK);
+    public ResponseEntity<Product> addNewProduct(@RequestBody ProductDto productDto )
+    {       Product product=getProduct(productDto);
+            Product saveproduct=this.productService.addNewProduct(product);
+            ResponseEntity<Product> responseEntity = new ResponseEntity<>(saveproduct,HttpStatus.OK);
 
              return  responseEntity;
     }
@@ -80,5 +82,18 @@ public class ProductController  {
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
         return this.productService.updateProduct(productId,product);
+    }
+
+    private Product getProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setId(productDto.getId());
+        product.setTitle(productDto.getTitle());
+        product.setPrice(productDto.getPrice());
+        Categories category = new Categories();
+        category.setName(productDto.getCategory());
+        product.setCategory(category);
+        product.setImageUrl(productDto.getImage());
+        product.setDescription(productDto.getDescription());
+        return product;
     }
 }

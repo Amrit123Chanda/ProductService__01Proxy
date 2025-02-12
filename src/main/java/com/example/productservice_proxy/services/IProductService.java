@@ -10,7 +10,13 @@ public interface IProductService {
 
     List<Product> getAllProducts();
 
-    Product addNewProduct(IClientProductDto productDto);
+    //Product addNewProduct(IClientProductDto productDto);
+
+    //Product addNewProduct(Product product);
+
+    Product addNewProduct(Product product);
+
+
 
     Product updateProduct(Long productId, Product product);
 
