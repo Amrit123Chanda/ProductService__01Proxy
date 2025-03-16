@@ -17,7 +17,7 @@ public abstract class BaseModel {
     GenerationType.AUTO lets the JPA provider (e.g., Hibernate, EclipseLink) decide the best strategy for generating primary key values.
 The JPA provider will look at the database and choose the most appropriate strategy based on the database and configuration.
 */
-    private long id;
+    private Long id;
     private Date createdAt;
     private Date lastUpdate;
     private boolean isDeleted;

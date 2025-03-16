@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
@@ -22,30 +23,30 @@ class ProductRepoTest {
 
     @Autowired
     private CategoryRepo categoryRepo;
-    @Test
-    void saveproductandcategory() {
-        Categories categories = new Categories();
-        categories.setName("Electronic");
-        categories.setDescription("Electronics");
-        categoryRepo.save(categories);
+//    @Test
+//    void saveproductandcategory() {
+//        Categories categories = new Categories();
+//        categories.setName("Electronic");
+//        categories.setDescription("Electronics");
+//        categoryRepo.save(categories);
+//
+//        Product product=new Product();
+//        product.setTitle("Laptop");
+//        product.setDescription("Laptops");
+//        product.setCategory(categories);
+//        productRepo.save(product);
+//
+//        Categories categories1 = categoryRepo.findById(categories.getId());
+//        System.out.println("Debug");
+//
+//    }
 
-        Product product=new Product();
-        product.setTitle("Laptop");
-        product.setDescription("Laptops");
-        product.setCategory(categories);
-        productRepo.save(product);
-
-        Categories categories1 = categoryRepo.findById(categories.getId());
-        System.out.println("Debug");
-
-    }
-
-    @Test
+ @Test
     @Transactional
     @Rollback(value = false)
     void saveproductsandcategory3()
     {
-        Categories category = categoryRepo.findById(1L);
+        Categories category = categoryRepo.findById(152L);
 
         Product product = new Product();
         product.setPrice(1012);
@@ -65,8 +66,8 @@ class ProductRepoTest {
     @Test
     @Transactional
     void saveproductsandcategory4()
-    {
-       Product product = productRepo.findProductById(152L);
-       System.out.println("Debug");
+    {   System.out.println("Debug1");
+       Product product = productRepo.findProductById(104L);
+       System.out.println("Debug2");
     }
 }

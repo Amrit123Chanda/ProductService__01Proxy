@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Long> {
-    Product save(Product product); //11/2/25save is method JPA repository interface 11/2/25: The save() method is commonly used in frameworks like Spring Data JPA or Hibernate to store or update data in a database.
+   // Product save(Product product); //11/2/25save is method JPA repository interface 11/2/25: The save() method is commonly used in frameworks like Spring Data JPA or Hibernate to store or update data in a database.
     /*
 save():Purpose: It saves (inserts or updates) an entity (a Java object) into the database. save() automatically saves to the database defined in application.properties.
 Behavior:
