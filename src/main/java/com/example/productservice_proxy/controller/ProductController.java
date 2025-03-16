@@ -24,6 +24,12 @@ public class ProductController  {
     public ProductController(IProductService productService)
     {
         this.productService=productService;
+        /*
+        when we use @RestController in a Spring Boot application, dependencies are automatically injected into the controller class through constructor injection if we define them as constructor parameters.
+        @RestController is a combination of @Controller and @ResponseBody, making the class a Spring-managed bean.
+        If the class has a constructor with dependencies (like a service), Spring automatically injects them.
+        This is possible due to Spring’s Dependency Injection (DI) mechanism.
+         */
     }
 
     @GetMapping("/{Id}")
